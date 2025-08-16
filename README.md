@@ -6,17 +6,23 @@
 .
 ├── api-gateway/
 │   └── main.go               # API Gateway to route requests to appropriate microservices
-├── go.mod                    # Go dependencies file for the API Gateway
-├── go.sum                    # Integrity check of dependencies
-├── config
+├── certs/
+│   ├── private_key.pem       # Private key for API communication
+│   └── public_key.pem        # Public key for API communication
+├── build/
+│   ├── api-gateway/          # Build output for API Gateway service
+│   ├── product-service/      # Build output for Product service
+│   ├── order-service/        # Build output for Order service
+│   ├── user-service/         # Build output for User service
+│   └── faq-service/          # Build output for FAQ service
+├── config/
 │   └── config.go             # Configuration for API Gateway and microservices
+├── .env                      # Environment variables for configuration (excluded from git)
 ├── product-service/
 │   ├── cmd/
 │   │   └── main.go           # Entry point for product microservice
 │   ├── config/
 │   │   └── config.go         # Configuration for product service (e.g., DB, API keys)
-│   ├── go.mod                # Go dependencies file for product service
-│   ├── go.sum                # Integrity check of dependencies
 │   ├── handlers/
 │   │   └── product_handler.go # Handles product-related HTTP requests
 │   ├── models/
@@ -34,8 +40,6 @@
 │   │   └── main.go           # Entry point for order microservice
 │   ├── config/
 │   │   └── config.go         # Configuration for order service (e.g., DB, API keys)
-│   ├── go.mod                # Go dependencies file for order service
-│   ├── go.sum                # Integrity check of dependencies
 │   ├── handlers/
 │   │   └── order_handler.go  # Handles order-related HTTP requests
 │   ├── models/
@@ -53,8 +57,6 @@
 │   │   └── main.go           # Entry point for user microservice
 │   ├── config/
 │   │   └── config.go         # Configuration for user service (e.g., DB, API keys)
-│   ├── go.mod                # Go dependencies file for user service
-│   ├── go.sum                # Integrity check of dependencies
 │   ├── handlers/
 │   │   └── user_handler.go   # Handles user-related HTTP requests
 │   ├── models/
@@ -72,8 +74,6 @@
 │   │   └── main.go           # Entry point for FAQ microservice
 │   ├── config/
 │   │   └── config.go         # Configuration for FAQ service (e.g., DB, API keys)
-│   ├── go.mod                # Go dependencies file for FAQ service
-│   ├── go.sum                # Integrity check of dependencies
 │   ├── handlers/
 │   │   └── faq_handler.go    # Handles FAQ-related HTTP requests
 │   ├── models/
@@ -88,6 +88,7 @@
 │       └── response.go       # Common utility functions for FAQ service
 ├── go.mod                    # Go dependencies for the entire project (if needed)
 └── docker-compose.yml        # Configuration for Docker containers (for all microservices)
+
 ```
 
 ### Explanation of Each Service:

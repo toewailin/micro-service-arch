@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "9090:9090"
+    depends_on:
+      - product-service
+      - order-service
+      - user-service
+      - faq-service
+
+  product-service:
+    build:
+      context: ./product-service
+    ports:
+      - "9091:9091"
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=3306
+    networks:
+      - microservices
+
+  order-service:
+    build:
+      context: ./order-service
+    ports:
+      - "9092:9092"
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=3306
+    networks:
+      - microservices
+
+  user-service:
+    build:
+      context: ./user-service
+    ports:
+      - "9093:9093"
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=3306
+    networks:
+      - microservices
+
+  faq-service:
+    build:
+      context: ./faq-service
+    ports:
+      - "9094:9094"
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=3306
+    networks:
+      - microservices
+
+networks:
+  microservices:
+    driver: bridge
